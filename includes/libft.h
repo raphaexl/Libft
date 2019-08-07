@@ -6,7 +6,7 @@
 /*   By: ebatchas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 01:15:41 by ebatchas          #+#    #+#             */
-/*   Updated: 2019/07/31 11:40:30 by ebatchas         ###   ########.fr       */
+/*   Updated: 2019/08/07 14:25:48 by ebatchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
+char				*ft_ftoa(float n);
 int					ft_putchar(int c);
 void				ft_putstr(char const *str);
 void				ft_putendl(char const *s);
@@ -76,7 +77,10 @@ void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 
+double				ft_pow(double base, int n);
+
 int					ft_atoi(const char *str);
+float				ft_atof(const char *str);
 void				ft_bzero(void *s, size_t n);
 int					ft_isalpha(int c);
 int					ft_isalnum(int c);
@@ -167,7 +171,7 @@ int					ft_print_color(char *str);
 
 void				ft_printf_error(char *str);
 
-void				ft_vector_init(t_vector *vec);
+void				ft_vector_init(t_vector *vec, size_t size);
 size_t				ft_vector_size(t_vector *vec);
 void				ft_vector_push_back(t_vector *vec, void *value);
 void				ft_vector_set(t_vector *vec, int id, void *value);

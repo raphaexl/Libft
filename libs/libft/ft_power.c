@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_power.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebatchas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/05 18:33:13 by ebatchas          #+#    #+#             */
-/*   Updated: 2019/08/07 12:41:49 by ebatchas         ###   ########.fr       */
+/*   Created: 2019/04/05 18:45:41 by ebatchas          #+#    #+#             */
+/*   Updated: 2019/08/07 13:49:38 by ebatchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+double		ft_pow(double base, int n)
 {
-	size_t	i;
-	char	*p;
-	char	*q;
+	double		res;
 
-	q = (char *)src;
-	p = (char *)dest;
-	i = 0;
-	while (i < n)
+	res = 1.0;
+	if (n == 0)
+		return (1);
+	if (n == 1)
+		return (base);
+	if (n < 0)
 	{
-		*p = *q;
-		p++;
-		q++;
-		i++;
+		n = -n;
+		base = 1.0 / base;
 	}
-	return (dest);
+	while (n)
+	{
+		if (n & 1)
+			res *= base;
+		n >>= 1;
+		base *= base;
+	}
+	return (res);
 }

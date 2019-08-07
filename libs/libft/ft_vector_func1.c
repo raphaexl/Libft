@@ -6,16 +6,17 @@
 /*   By: ebatchas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 11:45:24 by ebatchas          #+#    #+#             */
-/*   Updated: 2019/07/31 11:57:03 by ebatchas         ###   ########.fr       */
+/*   Updated: 2019/08/07 14:36:30 by ebatchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_vector_init(t_vector *v)
+void			ft_vector_init(t_vector *v, size_t size)
 {
 	if (!v)
 		return ;
+	v->type_size = size;
 	v->size = &ft_vector_size;
 	v->push_back = &ft_vector_push_back;
 	v->insert = &ft_vector_set;
@@ -42,10 +43,15 @@ size_t			ft_vector_size(t_vector *v)
 
 void			ft_vector_set(t_vector *v, int index, void *value)
 {
+	void	*new;
+
 	if (!v)
 		return ;
 	if (index >= 0 && index < v->length)
-		v->items[index] = value;
+	{
+		new = malloc(v->type_size);
+		v->items[index] = ft_memcpy(new, value, v->type_size);
+	}
 }
 
 void			*ft_vector_get(t_vector *v, int index)
@@ -57,7 +63,17 @@ void			*ft_vector_get(t_vector *v, int index)
 
 void			ft_vector_free(t_vector *v)
 {
+	size_t	i;
+	size_t	size;
+
+	i = 0;
+	size = v->length;
 	if (!v)
 		return ;
+	while (i < size)
+	{
+		free(v->items[i]);
+		i++;
+	}
 	free(v->items);
 }

@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_ftoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebatchas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/05 18:33:13 by ebatchas          #+#    #+#             */
-/*   Updated: 2019/08/07 12:41:49 by ebatchas         ###   ########.fr       */
+/*   Created: 2019/08/07 13:39:08 by ebatchas          #+#    #+#             */
+/*   Updated: 2019/08/07 14:40:40 by ebatchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+char		*ft_itoaf(long double nb, int precision)
 {
-	size_t	i;
-	char	*p;
-	char	*q;
+	int				n;
+	int				i;
+	char			*temp;
 
-	q = (char *)src;
-	p = (char *)dest;
 	i = 0;
-	while (i < n)
+	n = nb;
+	temp = ft_strdup(ft_itoa(n));
+	nb = nb > 0 ? nb - n : -(nb - n);
+	temp = ft_strjoin(temp, ".");
+	while (nb < 0.1 && nb > -0.1 && i < precision - 1)
 	{
-		*p = *q;
-		p++;
-		q++;
+		nb *= 10;
 		i++;
 	}
-	return (dest);
+	n = nb * ft_pow(10, precision - i);
+	n = (nb * ft_pow(10, precision - i) - n > 0.01) ? n + 1 : n;
+	temp = ft_strjoin(temp, ft_itoa(n));
+	return (temp);
 }

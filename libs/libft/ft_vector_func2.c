@@ -6,13 +6,13 @@
 /*   By: ebatchas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 11:46:43 by ebatchas          #+#    #+#             */
-/*   Updated: 2019/07/31 12:07:16 by ebatchas         ###   ########.fr       */
+/*   Updated: 2019/08/07 14:36:55 by ebatchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		ft_vector_resize(t_vector *v, int capacity)
+void			ft_vector_resize(t_vector *v, int capacity)
 {
 	void	**items;
 
@@ -27,11 +27,14 @@ static void		ft_vector_resize(t_vector *v, int capacity)
 
 void			ft_vector_push_back(t_vector *v, void *value)
 {
+	void	*new;
+
 	if (!v)
 		return ;
 	if (v->capacity == v->length)
 		ft_vector_resize(v, v->capacity * 2);
-	v->items[v->length++] = value;
+	new = malloc(v->type_size);
+	v->items[v->length++] = ft_memcpy(new, value, v->type_size);
 }
 
 void			ft_vector_remove(t_vector *v, int index)
@@ -44,12 +47,12 @@ void			ft_vector_remove(t_vector *v, int index)
 	if (index < 0 || index >= v->length)
 		return ;
 	i = index;
-	v->items[i] = NULL;
+	free(v->items[i]);
 	size = v->length;
 	while (i < size - 1)
 	{
 		v->items[i] = v->items[i + 1];
-		v->items[i + 1] = NULL;
+		free(v->items[i + 1]);
 		i++;
 	}
 	v->length--;
@@ -70,7 +73,7 @@ void			ft_vector_delete(t_vector *v, void *value)
 	{
 		if (v->items[i] == value)
 		{
-			v->items[i] = NULL;
+			free(v->items[i]);
 			break ;
 		}
 		i++;
@@ -78,7 +81,7 @@ void			ft_vector_delete(t_vector *v, void *value)
 	while (i < size - 1)
 	{
 		v->items[i] = v->items[i + 1];
-		v->items[i + 1] = NULL;
+		free(v->items[i + 1]);
 		i++;
 	}
 	v->length--;

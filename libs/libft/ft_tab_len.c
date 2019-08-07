@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_tab_len.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebatchas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/05 18:33:13 by ebatchas          #+#    #+#             */
-/*   Updated: 2019/08/07 12:41:49 by ebatchas         ###   ########.fr       */
+/*   Created: 2019/08/07 14:42:30 by ebatchas          #+#    #+#             */
+/*   Updated: 2019/08/07 14:46:47 by ebatchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+int		ft_tab_len(char **tab)
 {
-	size_t	i;
-	char	*p;
-	char	*q;
+	int		i;
 
-	q = (char *)src;
-	p = (char *)dest;
-	i = 0;
-	while (i < n)
-	{
-		*p = *q;
-		p++;
-		q++;
-		i++;
-	}
-	return (dest);
+	i = -1;
+	while (tab[++i])
+		;
+	return (i);
 }

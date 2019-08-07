@@ -6,7 +6,7 @@
 #    By: ebatchas <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/06 17:03:06 by ebatchas          #+#    #+#              #
-#    Updated: 2019/07/31 11:56:12 by ebatchas         ###   ########.fr        #
+#    Updated: 2019/08/07 14:47:50 by ebatchas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ HEADDIR = .
 CFLAGS=-I$(HEADDIR) -Wall -Wextra -Werror
 
 SRC=$(SRCDIR)/ft_atoi.c\
+	$(SRCDIR)/ft_atof.c\
+	$(SRCDIR)/ft_ftoa.c\
 	$(SRCDIR)/ft_isalnum.c\
 	$(SRCDIR)/ft_isascii.c\
 	$(SRCDIR)/ft_isalpha.c\
@@ -43,6 +45,9 @@ SRC=$(SRCDIR)/ft_atoi.c\
 	$(SRCDIR)/ft_memcmp.c\
 	$(SRCDIR)/ft_memset.c\
 	$(SRCDIR)/ft_memmove.c\
+	$(SRCDIR)/ft_power.c\
+	$(SRCDIR)/ft_tab_len.c\
+	$(SRCDIR)/ft_tab_free.c\
 	$(SRCDIR)/ft_putchar.c\
 	$(SRCDIR)/ft_putchar_fd.c\
 	$(SRCDIR)/ft_putendl.c\
@@ -112,6 +117,8 @@ SRC=$(SRCDIR)/ft_atoi.c\
 	$(SRCDIR)/ft_printf.c
 	
 OBJ=$(LIBDIR)/ft_atoi.o\
+	$(LIBDIR)/ft_atof.o\
+	$(LIBDIR)/ft_ftoa.o\
 	$(LIBDIR)/ft_isalnum.o\
 	$(LIBDIR)/ft_isascii.o\
 	$(LIBDIR)/ft_isalpha.o\
@@ -136,6 +143,9 @@ OBJ=$(LIBDIR)/ft_atoi.o\
 	$(LIBDIR)/ft_memcmp.o\
 	$(LIBDIR)/ft_memset.o\
 	$(LIBDIR)/ft_memmove.o\
+	$(LIBDIR)/ft_power.o\
+	$(LIBDIR)/ft_tab_len.o\
+	$(LIBDIR)/ft_tab_free.o\
 	$(LIBDIR)/ft_putchar.o\
 	$(LIBDIR)/ft_putchar_fd.o\
 	$(LIBDIR)/ft_putendl.o\

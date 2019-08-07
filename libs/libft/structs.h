@@ -6,7 +6,7 @@
 /*   By: ebatchas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 19:27:18 by ebatchas          #+#    #+#             */
-/*   Updated: 2019/07/31 11:40:14 by ebatchas         ###   ########.fr       */
+/*   Updated: 2019/08/07 14:35:09 by ebatchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,18 +84,19 @@ typedef struct	s_conv
 	char				sign;
 }				t_conv;
 
-typedef struct		s_vector
+typedef struct	s_vector
 {
-	void			**items;
-	int				capacity;
-	int				length;
-	size_t			(*size)(struct s_vector *);
-	void			(*push_back)(struct s_vector *, void *value);
-	void			(*insert)(struct s_vector *, int , void *);
-	void			(*set)(struct s_vector *, int , void *);
-	void			*(*at)(struct s_vector *, int );
-	void			(*remove)(struct s_vector *, int );
-	void			(*delete)(struct s_vector *, void *value);
-	void			(*clear)(struct s_vector *);
-}					t_vector;
+	void		**items;
+	int			capacity;
+	int			length;
+	size_t		type_size;
+	size_t		(*size)(struct s_vector *);
+	void		(*push_back)(struct s_vector *, void *);
+	void		(*insert)(struct s_vector *, int, void *);
+	void		(*set)(struct s_vector *, int, void *);
+	void		*(*at)(struct s_vector *, int);
+	void		(*remove)(struct s_vector *, int);
+	void		(*delete)(struct s_vector *, void *value);
+	void		(*clear)(struct s_vector *);
+}				t_vector;
 #endif
