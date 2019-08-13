@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstpop_ptr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebatchas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/06 00:13:36 by ebatchas          #+#    #+#             */
-/*   Updated: 2019/08/13 13:36:23 by ebatchas         ###   ########.fr       */
+/*   Created: 2019/08/09 10:51:22 by ebatchas          #+#    #+#             */
+/*   Updated: 2019/08/09 10:51:30 by ebatchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void const *content, size_t content_size)
+void	*ft_lstpop_ptr(t_list **list)
 {
-	t_list	*new;
+	void	*content;
+	t_list	*ptr;
 
-	new = NULL;
-	if ((new = (t_list *)malloc(sizeof(*new))))
+	if (*list != NULL)
 	{
-		if (!content)
-		{
-			new->content = NULL;
-			new->content_size = 0;
-		}
-		else if ((new->content = (void *)malloc(content_size)))
-		{
-			ft_memcpy(new->content, content, content_size);
-			new->content_size = content_size;
-		}
-		new->next = NULL;
+		ptr = *list;
+		content = ptr->content;
+		*list = (*list)->next;
+		free(ptr);
+		return (content);
 	}
-	return (new);
+	return (NULL);
 }

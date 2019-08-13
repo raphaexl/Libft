@@ -6,7 +6,7 @@
 #    By: ebatchas <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/06 17:03:06 by ebatchas          #+#    #+#              #
-#    Updated: 2019/08/07 14:47:50 by ebatchas         ###   ########.fr        #
+#    Updated: 2019/08/13 13:51:51 by ebatchas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,9 @@ HEADDIR = .
 
 CFLAGS=-I$(HEADDIR) -Wall -Wextra -Werror
 
+DONE_COLOR = \x1b[32;01m
+EOC=\033[0m
+
 SRC=$(SRCDIR)/ft_atoi.c\
 	$(SRCDIR)/ft_atof.c\
 	$(SRCDIR)/ft_ftoa.c\
@@ -28,15 +31,27 @@ SRC=$(SRCDIR)/ft_atoi.c\
 	$(SRCDIR)/ft_isprint.c\
 	$(SRCDIR)/ft_bzero.c\
 	$(SRCDIR)/ft_lstnew.c\
+	$(SRCDIR)/ft_lstnew_ptr.c\
 	$(SRCDIR)/ft_lstadd.c\
 	$(SRCDIR)/ft_lstadd2.c\
 	$(SRCDIR)/ft_lstdelone.c\
 	$(SRCDIR)/ft_lstdel.c\
+	$(SRCDIR)/ft_lstdel_ptr.c\
 	$(SRCDIR)/ft_lstiter.c\
 	$(SRCDIR)/ft_lstdup.c\
+	$(SRCDIR)/ft_lstswap.c\
+	$(SRCDIR)/ft_lstreverse.c\
 	$(SRCDIR)/ft_lstjoin.c\
 	$(SRCDIR)/ft_lstlen.c\
 	$(SRCDIR)/ft_lstmap.c\
+	$(SRCDIR)/ft_lstpop.c\
+	$(SRCDIR)/ft_lstpop_ptr.c\
+	$(SRCDIR)/ft_lstpushback.c\
+	$(SRCDIR)/ft_tree_new.c\
+	$(SRCDIR)/ft_tree_prefix.c\
+	$(SRCDIR)/ft_tree_postfix.c\
+	$(SRCDIR)/ft_tree_infix.c\
+	$(SRCDIR)/ft_tree_del.c\
 	$(SRCDIR)/ft_memalloc.c\
 	$(SRCDIR)/ft_memcpy.c\
 	$(SRCDIR)/ft_memchr.c\
@@ -46,8 +61,8 @@ SRC=$(SRCDIR)/ft_atoi.c\
 	$(SRCDIR)/ft_memset.c\
 	$(SRCDIR)/ft_memmove.c\
 	$(SRCDIR)/ft_power.c\
-	$(SRCDIR)/ft_tab_len.c\
-	$(SRCDIR)/ft_tab_free.c\
+	$(SRCDIR)/ft_len_split.c\
+	$(SRCDIR)/ft_free_split.c\
 	$(SRCDIR)/ft_putchar.c\
 	$(SRCDIR)/ft_putchar_fd.c\
 	$(SRCDIR)/ft_putendl.c\
@@ -126,15 +141,26 @@ OBJ=$(LIBDIR)/ft_atoi.o\
 	$(LIBDIR)/ft_isprint.o\
 	$(LIBDIR)/ft_bzero.o\
 	$(LIBDIR)/ft_lstnew.o\
+	$(LIBDIR)/ft_lstnew_ptr.o\
 	$(LIBDIR)/ft_lstadd.o\
 	$(LIBDIR)/ft_lstadd2.o\
 	$(LIBDIR)/ft_lstdelone.o\
 	$(LIBDIR)/ft_lstdel.o\
 	$(LIBDIR)/ft_lstiter.o\
 	$(LIBDIR)/ft_lstdup.o\
+	$(LIBDIR)/ft_lstswap.o\
+	$(LIBDIR)/ft_lstreverse.o\
 	$(LIBDIR)/ft_lstjoin.o\
 	$(LIBDIR)/ft_lstlen.o\
 	$(LIBDIR)/ft_lstmap.o\
+	$(LIBDIR)/ft_lstpop.o\
+	$(LIBDIR)/ft_lstpop_ptr.o\
+	$(LIBDIR)/ft_lstpushback.o\
+	$(LIBDIR)/ft_tree_new.o\
+	$(LIBDIR)/ft_tree_prefix.o\
+	$(LIBDIR)/ft_tree_postfix.o\
+	$(LIBDIR)/ft_tree_infix.o\
+	$(LIBDIR)/ft_tree_del.o\
 	$(LIBDIR)/ft_memalloc.o\
 	$(LIBDIR)/ft_memcpy.o\
 	$(LIBDIR)/ft_memchr.o\
@@ -144,8 +170,8 @@ OBJ=$(LIBDIR)/ft_atoi.o\
 	$(LIBDIR)/ft_memset.o\
 	$(LIBDIR)/ft_memmove.o\
 	$(LIBDIR)/ft_power.o\
-	$(LIBDIR)/ft_tab_len.o\
-	$(LIBDIR)/ft_tab_free.o\
+	$(LIBDIR)/ft_len_split.o\
+	$(LIBDIR)/ft_free_split.o\
 	$(LIBDIR)/ft_putchar.o\
 	$(LIBDIR)/ft_putchar_fd.o\
 	$(LIBDIR)/ft_putendl.o\
@@ -219,14 +245,17 @@ NAME=libft.a
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) $(SRC) -c
-	ar rc $@ $(OBJ)
-	ranlib $@
+	@$(CC) $(CFLAGS) $(SRC) -c
+	@ar rc $@ $(OBJ)
+	@ranlib $@
+	@echo "$(DONE_COLOR) libft compiled successfully !$(EOC)"
 
 .PHONY: clean fclean
 
 clean:
-	rm -rf *.o
+	@rm -rf *.o
+	@echo "$(DONE_COLOR) libft object files successfully removed !$(EOC)"
 fclean : clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
+	@echo "$(DONE_COLOR) libft object files successfully removed !$(EOC)"
 re: fclean all

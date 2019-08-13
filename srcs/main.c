@@ -6,41 +6,36 @@
 /*   By: ebatchas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 10:22:31 by ebatchas          #+#    #+#             */
-/*   Updated: 2019/08/07 14:30:38 by ebatchas         ###   ########.fr       */
+/*   Updated: 2019/08/13 13:42:33 by ebatchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
+void	ft_tree_print(t_tree *tree)
+{
+	ft_printf("%d\t", *(int *)tree->content);
+}
+
 int			main(void)
 {
-	t_vector	v;
-	t_vector	u;
+	int		n = 42;
+	t_tree	*tree;
 
-	ft_vector_init(&v, sizeof(char * ));
-	v.push_back(&v, "Bonjour");
-	v.push_back(&v, "Tout");
-	v.push_back(&v, "Le");
-	v.push_back(&v, "Monde");
-	for (size_t i = 0; i < v.size(&v); i++)
-		ft_printf("%s", (char *)v.items[i]);
-	ft_putendl("");
-	v.delete(&v, "Le");
-//	v.delete(&v, "Bonjour");
-	v.set(&v, 0, "Hello");
-	for (size_t i = 0; i < v.size(&v); i++)
-		ft_printf("%s", (char *)v.items[i]);
-	int	m = 4;
-	ft_vector_init(&u, sizeof(int));
-	v.push_back(&u, &m);
-m = 8;
-	v.push_back(&u, &m);
-	int		*value = u.items[u.size(&u) - 2];
-	ft_printf("value : %d\n",*value);
-	int		*valu = u.items[u.size(&u) - 1];
-	ft_printf("value : %d\n",*valu);
-	ft_putendl("");
-	ft_vector_free(&v);
-	ft_vector_free(&u);
+	tree = ft_tree_new(&n, sizeof(int));
+	n = 52;
+	tree->right = ft_tree_new(&n, sizeof(int));
+	n = 8;
+	tree->right->left = ft_tree_new(&n, sizeof(int));
+	n = 2;
+	tree->left = ft_tree_new(&n, sizeof(int));
+	ft_printf("Parcours prefixe : ");
+	ft_tree_prefix(tree, &ft_tree_print);
+	ft_printf("\nParcours postfixe : ");
+	ft_tree_postfix(tree, &ft_tree_print);
+	ft_printf("\nParcours infixe : ");
+	ft_tree_infix(tree, &ft_tree_print);
+	write(1, "\n", 1);
+	ft_tree_del(&tree);
 	return (0);
 }

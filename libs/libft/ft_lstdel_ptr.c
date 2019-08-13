@@ -1,35 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstdel_ptr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebatchas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/06 00:13:36 by ebatchas          #+#    #+#             */
-/*   Updated: 2019/08/13 13:36:23 by ebatchas         ###   ########.fr       */
+/*   Created: 2019/08/09 10:50:27 by ebatchas          #+#    #+#             */
+/*   Updated: 2019/08/10 11:40:07 by ebatchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void const *content, size_t content_size)
+void	ft_lstdel_ptr(t_list **list)
 {
-	t_list	*new;
-
-	new = NULL;
-	if ((new = (t_list *)malloc(sizeof(*new))))
-	{
-		if (!content)
-		{
-			new->content = NULL;
-			new->content_size = 0;
-		}
-		else if ((new->content = (void *)malloc(content_size)))
-		{
-			ft_memcpy(new->content, content, content_size);
-			new->content_size = content_size;
-		}
-		new->next = NULL;
-	}
-	return (new);
+	while (*list != NULL)
+		ft_lstpop_ptr(list);
 }

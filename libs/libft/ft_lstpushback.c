@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstpushback.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebatchas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/06 00:13:36 by ebatchas          #+#    #+#             */
-/*   Updated: 2019/08/13 13:36:23 by ebatchas         ###   ########.fr       */
+/*   Created: 2019/08/09 10:41:09 by ebatchas          #+#    #+#             */
+/*   Updated: 2019/08/09 10:46:04 by ebatchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void const *content, size_t content_size)
+void	ft_lstpushback(t_list **lst, t_list *new)
 {
-	t_list	*new;
+	t_list	*p;
 
-	new = NULL;
-	if ((new = (t_list *)malloc(sizeof(*new))))
+	if (!lst)
+		return ;
+	if (!*lst)
+		*lst = new;
+	else
 	{
-		if (!content)
-		{
-			new->content = NULL;
-			new->content_size = 0;
-		}
-		else if ((new->content = (void *)malloc(content_size)))
-		{
-			ft_memcpy(new->content, content, content_size);
-			new->content_size = content_size;
-		}
-		new->next = NULL;
+		p = *lst;
+		while (p->next)
+			p = p->next;
+		p->next = new;
 	}
-	return (new);
 }

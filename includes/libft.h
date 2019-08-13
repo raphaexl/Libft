@@ -6,7 +6,7 @@
 /*   By: ebatchas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 01:15:41 by ebatchas          #+#    #+#             */
-/*   Updated: 2019/08/07 14:25:48 by ebatchas         ###   ########.fr       */
+/*   Updated: 2019/08/13 13:19:43 by ebatchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,17 @@ typedef	struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef	struct		s_tree
+{
+	void			*content;
+	size_t			content_size;
+	struct s_tree	*left;
+	struct s_tree	*right;
+}					t_tree;
+
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
+void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alast, t_list *ne);
 void				ft_lstadd2(t_list **alast, t_list *ne);
@@ -50,6 +59,15 @@ int					ft_lstlen(t_list *lst);
 t_list				*ft_lstdup(t_list *src);
 t_list				*ft_lstjoin(t_list *lst1, t_list *lst2);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+void				*ft_lstpop(t_list **lst);
+void				*ft_lstpop_ptr(t_list **list);
+void				ft_lstpushback(t_list **lst, t_list *nw);
+
+t_tree				*ft_tree_new(void const *content, size_t content_size);
+void				ft_tree_prefix(t_tree *tree, void (*f)(t_tree *));
+void				ft_tree_postfix(t_tree *tree, void (*f)(t_tree *));
+void				ft_tree_infix(t_tree *tree, void (*f)(t_tree *));
+void				ft_tree_del(t_tree **tree);
 
 int					ft_strns(char const *s, char c);
 char				*ft_strnew(size_t size);
@@ -182,4 +200,6 @@ void				ft_vector_free(t_vector *vec);
 
 void				*ft_realloc(void *ptr, size_t prev_len, size_t next_len);
 
+void				ft_free_split(char ***tab);
+int					ft_len_split(char **tab);
 #endif

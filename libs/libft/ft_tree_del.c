@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_tree_del.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebatchas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/06 00:13:36 by ebatchas          #+#    #+#             */
-/*   Updated: 2019/08/13 13:36:23 by ebatchas         ###   ########.fr       */
+/*   Created: 2019/08/13 13:45:41 by ebatchas          #+#    #+#             */
+/*   Updated: 2019/08/13 13:45:59 by ebatchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void const *content, size_t content_size)
+void	ft_tree_del(t_tree **tree)
 {
-	t_list	*new;
+	t_tree	*racine;
 
-	new = NULL;
-	if ((new = (t_list *)malloc(sizeof(*new))))
+	racine = *tree;
+	if (racine)
 	{
-		if (!content)
-		{
-			new->content = NULL;
-			new->content_size = 0;
-		}
-		else if ((new->content = (void *)malloc(content_size)))
-		{
-			ft_memcpy(new->content, content, content_size);
-			new->content_size = content_size;
-		}
-		new->next = NULL;
+		ft_tree_del(&racine->left);
+		ft_tree_del(&racine->right);
+		free(racine);
 	}
-	return (new);
+	*tree = NULL;
 }

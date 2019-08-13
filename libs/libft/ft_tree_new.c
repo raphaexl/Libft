@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_tree_new.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebatchas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/06 00:13:36 by ebatchas          #+#    #+#             */
-/*   Updated: 2019/08/13 13:36:23 by ebatchas         ###   ########.fr       */
+/*   Created: 2019/08/13 12:48:44 by ebatchas          #+#    #+#             */
+/*   Updated: 2019/08/13 13:46:14 by ebatchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void const *content, size_t content_size)
+t_tree		*ft_tree_new(void const *content, size_t content_size)
 {
-	t_list	*new;
+	t_tree	*new;
 
-	new = NULL;
-	if ((new = (t_list *)malloc(sizeof(*new))))
+	if (!(new = (t_tree *)malloc(sizeof(*new))))
+		return (NULL);
+	if (!content)
 	{
-		if (!content)
-		{
-			new->content = NULL;
-			new->content_size = 0;
-		}
-		else if ((new->content = (void *)malloc(content_size)))
-		{
-			ft_memcpy(new->content, content, content_size);
-			new->content_size = content_size;
-		}
-		new->next = NULL;
+		new->content = NULL;
+		new->content_size = 0;
 	}
+	else if ((new->content = malloc(sizeof(content_size))))
+	{
+		ft_memcpy(new->content, content, content_size);
+		new->content_size = content_size;
+	}
+	new->left = NULL;
+	new->right = NULL;
 	return (new);
 }
