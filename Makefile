@@ -6,7 +6,7 @@
 #    By: ebatchas <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/30 11:05:48 by ebatchas          #+#    #+#              #
-#    Updated: 2019/09/30 12:05:22 by ebatchas         ###   ########.fr        #
+#    Updated: 2019/09/30 12:15:05 by ebatchas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,9 @@ SRCS_NO_PREFIX = ft_atoi.c ft_atof.c ft_ftoa.c ft_isalnum.c ft_isascii.c ft_isal
 	ft_lstswap.c ft_lstreverse.c ft_lstjoin.c ft_lstlen.c ft_lstmap.c ft_lstpop.c\
 	ft_lstpop_ptr.c ft_lstpushback.c ft_tree_new.c ft_tree_new_ptr.c ft_tree_prefix.c \
 	ft_tree_postfix.c ft_tree_infix.c ft_tree_add_sorted.c ft_tree_add_sorted_mul.c \
-	ft_tree_len.c ft_tree_del.c ft_tree_del_ptr.c ft_tree_del_value.c ft_min.c ft_max.c\
-	ft_memalloc.c ft_memcpy.c ft_memchr.c ft_memccpy.c ft_memdel.c ft_memcmp.c ft_memset.c \
+	ft_tree_len.c ft_tree_del.c ft_tree_del_ptr.c ft_tree_del_value.c ft_tree_at.c \
+	ft_min.c ft_max.c ft_memalloc.c ft_memcpy.c ft_memchr.c ft_memccpy.c ft_memdel.c \
+	ft_memcmp.c ft_memset.c \
 	ft_memmove.c ft_power.c ft_len_split.c ft_free_split.c ft_free_turn.c ft_strjoin_3.c\
 	ft_putchar.c ft_putchar_fd.c ft_putendl.c ft_putendl_fd.c ft_putnbr.c ft_putnbr_fd.c\
 	ft_putstr.c ft_putstr_fd.c ft_strclr.c ft_strcat.c ft_strcpy.c ft_strchr.c ft_strcmp.c\
