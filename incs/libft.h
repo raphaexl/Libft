@@ -6,7 +6,7 @@
 /*   By: ebatchas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 01:15:41 by ebatchas          #+#    #+#             */
-/*   Updated: 2019/08/13 13:19:43 by ebatchas         ###   ########.fr       */
+/*   Updated: 2019/09/30 12:07:19 by ebatchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # include <sys/uio.h>
 # include <stdarg.h>
 # include <wchar.h>
-# include "structs.h"
 # include "color.h"
+# include "structs.h"
 
 typedef	struct		s_list
 {
@@ -64,10 +64,20 @@ void				*ft_lstpop_ptr(t_list **list);
 void				ft_lstpushback(t_list **lst, t_list *nw);
 
 t_tree				*ft_tree_new(void const *content, size_t content_size);
+t_tree				*ft_tree_new_ptr(void *content);
 void				ft_tree_prefix(t_tree *tree, void (*f)(t_tree *));
 void				ft_tree_postfix(t_tree *tree, void (*f)(t_tree *));
 void				ft_tree_infix(t_tree *tree, void (*f)(t_tree *));
+void				*ft_tree_at_infix_process(t_tree *tree, int *index);
+void				*ft_tree_at_infix(t_tree *tree, int index);
+int					ft_tree_add_sorted_mul(t_tree **t, void *c,
+		int (*s)(void*, void *), int m);
+int					ft_tree_add_sorted(t_tree **tree, void *content,
+		int (*sort)(void*, void *));
+int					ft_treelen(t_tree *tree);
 void				ft_tree_del(t_tree **tree);
+void				ft_tree_del_ptr(t_tree **tree);
+void				ft_tree_del_value(t_tree **tree);
 
 int					ft_strns(char const *s, char c);
 char				*ft_strnew(size_t size);
@@ -82,6 +92,7 @@ int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t len);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
+char				*ft_strjoin_3(char const *s1, char const *s2, char const *s3);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
@@ -200,6 +211,14 @@ void				ft_vector_free(t_vector *vec);
 
 void				*ft_realloc(void *ptr, size_t prev_len, size_t next_len);
 
+int					ft_max(int a, int b);
+int					ft_min(int a, int b);
 void				ft_free_split(char ***tab);
 int					ft_len_split(char **tab);
+int					ft_free_turn_split(char ***split, int ret);
+int					ft_free_turn_splits(char ***split, char ***split2, int ret);
+char				*ft_free_turn_strs(char **to_del, char **to_del2, char *res);
+char				*ft_free_turn_str(char **to_del, char *res);
+int					ft_free_turn(void *str, int ret);
+
 #endif

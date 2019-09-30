@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tree_del.c                                      :+:      :+:    :+:   */
+/*   ft_tree_len.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebatchas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/13 13:45:41 by ebatchas          #+#    #+#             */
-/*   Updated: 2019/08/13 13:45:59 by ebatchas         ###   ########.fr       */
+/*   Created: 2019/09/30 11:43:07 by ebatchas          #+#    #+#             */
+/*   Updated: 2019/09/30 11:57:22 by ebatchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_tree_del(t_tree **tree)
+int		ft_treelen(t_tree *tree)
 {
-	t_tree	*racine;
-
-	racine = *tree;
-	if (racine)
-	{
-		ft_tree_del(&racine->left);
-		ft_tree_del(&racine->right);
-		free(racine);
-	}
-	*tree = NULL;
+	if (tree == NULL)
+		return (0);
+	else
+		return (1 + ft_treelen(tree->left) + ft_treelen(tree->right));
 }

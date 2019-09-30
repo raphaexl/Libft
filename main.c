@@ -6,11 +6,11 @@
 /*   By: ebatchas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 10:22:31 by ebatchas          #+#    #+#             */
-/*   Updated: 2019/08/13 13:42:33 by ebatchas         ###   ########.fr       */
+/*   Updated: 2019/09/30 11:34:15 by ebatchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "incs/libft.h"
 
 void	ft_tree_print(t_tree *tree)
 {
